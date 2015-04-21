@@ -1,0 +1,242 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:ch340g
+LIBS:hardware-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 4
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L FSM_SWITCH U?
+U 1 1 5535AD07
+P 3750 2850
+F 0 "U?" H 3750 3150 60  0000 C CNN
+F 1 "FSM_SWITCH" H 3750 2550 60  0000 C CNN
+F 2 "" H 3750 2800 60  0000 C CNN
+F 3 "" H 3750 2800 60  0000 C CNN
+	1    3750 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L FSM_SWITCH U?
+U 1 1 5535AD3E
+P 4800 2850
+F 0 "U?" H 4800 3150 60  0000 C CNN
+F 1 "FSM_SWITCH" H 4800 2550 60  0000 C CNN
+F 2 "" H 4800 2800 60  0000 C CNN
+F 3 "" H 4800 2800 60  0000 C CNN
+	1    4800 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L FSM_SWITCH U?
+U 1 1 5535AD5A
+P 5850 2850
+F 0 "U?" H 5850 3150 60  0000 C CNN
+F 1 "FSM_SWITCH" H 5850 2550 60  0000 C CNN
+F 2 "" H 5850 2800 60  0000 C CNN
+F 3 "" H 5850 2800 60  0000 C CNN
+	1    5850 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L FSM_SWITCH U?
+U 1 1 5535AD89
+P 6850 2850
+F 0 "U?" H 6850 3150 60  0000 C CNN
+F 1 "FSM_SWITCH" H 6850 2550 60  0000 C CNN
+F 2 "" H 6850 2800 60  0000 C CNN
+F 3 "" H 6850 2800 60  0000 C CNN
+	1    6850 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 2200 6500 2200
+Wire Wire Line
+	6500 2200 6500 2950
+Wire Wire Line
+	5500 2200 5500 2950
+Connection ~ 5500 2200
+Wire Wire Line
+	4450 2200 4450 2950
+Connection ~ 4450 2200
+Wire Wire Line
+	3400 2200 3400 2950
+Connection ~ 3400 2200
+Connection ~ 3400 2700
+Connection ~ 4450 2700
+Connection ~ 5500 2700
+Connection ~ 6500 2700
+Wire Wire Line
+	4100 2700 4100 3600
+Connection ~ 4100 2950
+Wire Wire Line
+	5150 2700 5150 3600
+Connection ~ 5150 2950
+Wire Wire Line
+	6200 2700 6200 3600
+Connection ~ 6200 2950
+Wire Wire Line
+	7200 2700 7200 3600
+Connection ~ 7200 2950
+$Comp
+L LED D?
+U 1 1 5535AEF6
+P 3900 3350
+F 0 "D?" H 3900 3450 50  0000 C CNN
+F 1 "LED" H 3900 3250 50  0000 C CNN
+F 2 "" H 3900 3350 60  0000 C CNN
+F 3 "" H 3900 3350 60  0000 C CNN
+	1    3900 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED D?
+U 1 1 5535AF2D
+P 4950 3350
+F 0 "D?" H 4950 3450 50  0000 C CNN
+F 1 "LED" H 4950 3250 50  0000 C CNN
+F 2 "" H 4950 3350 60  0000 C CNN
+F 3 "" H 4950 3350 60  0000 C CNN
+	1    4950 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED D?
+U 1 1 5535AF50
+P 6000 3350
+F 0 "D?" H 6000 3450 50  0000 C CNN
+F 1 "LED" H 6000 3250 50  0000 C CNN
+F 2 "" H 6000 3350 60  0000 C CNN
+F 3 "" H 6000 3350 60  0000 C CNN
+	1    6000 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED D?
+U 1 1 5535AF7F
+P 7000 3350
+F 0 "D?" H 7000 3450 50  0000 C CNN
+F 1 "LED" H 7000 3250 50  0000 C CNN
+F 2 "" H 7000 3350 60  0000 C CNN
+F 3 "" H 7000 3350 60  0000 C CNN
+	1    7000 3350
+	1    0    0    -1  
+$EndComp
+Text HLabel 4100 3600 3    60   Input ~ 0
+D0
+Text HLabel 5150 3600 3    60   Input ~ 0
+D1
+Text HLabel 6200 3600 3    60   Input ~ 0
+D2
+Text HLabel 7200 3600 3    60   Input ~ 0
+D3
+Text HLabel 2700 2200 0    60   Input ~ 0
+SEL
+Wire Wire Line
+	2700 4000 6800 4000
+Connection ~ 5800 4000
+Connection ~ 4750 4000
+Connection ~ 3700 4000
+Text GLabel 2700 4000 0    60   Input ~ 0
+5V
+$Comp
+L R R?
+U 1 1 5535B0B3
+P 3700 3650
+F 0 "R?" V 3780 3650 50  0000 C CNN
+F 1 "330" V 3700 3650 50  0000 C CNN
+F 2 "" V 3630 3650 30  0000 C CNN
+F 3 "" H 3700 3650 30  0000 C CNN
+	1    3700 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 5535B0E8
+P 4750 3650
+F 0 "R?" V 4830 3650 50  0000 C CNN
+F 1 "300" V 4750 3650 50  0000 C CNN
+F 2 "" V 4680 3650 30  0000 C CNN
+F 3 "" H 4750 3650 30  0000 C CNN
+	1    4750 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 5535B110
+P 5800 3650
+F 0 "R?" H 5880 3650 50  0000 C CNN
+F 1 "330" V 5800 3650 50  0000 C CNN
+F 2 "" V 5730 3650 30  0000 C CNN
+F 3 "" H 5800 3650 30  0000 C CNN
+	1    5800 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 5535B138
+P 6800 3650
+F 0 "R?" V 6880 3650 50  0000 C CNN
+F 1 "330" V 6800 3650 50  0000 C CNN
+F 2 "" V 6730 3650 30  0000 C CNN
+F 3 "" H 6800 3650 30  0000 C CNN
+	1    6800 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 4000 3700 3800
+Wire Wire Line
+	3700 3500 3700 3350
+Wire Wire Line
+	4750 4000 4750 3800
+Wire Wire Line
+	4750 3500 4750 3350
+Wire Wire Line
+	5800 4000 5800 3800
+Wire Wire Line
+	5800 3500 5800 3350
+Wire Wire Line
+	6800 4000 6800 3800
+Wire Wire Line
+	6800 3500 6800 3350
+$EndSCHEMATC
