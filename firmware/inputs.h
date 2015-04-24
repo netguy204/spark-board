@@ -22,14 +22,16 @@ typedef uint8_t MATRIX_RESULT[ARRAY_SIZE(matrix_enables) * ARRAY_SIZE(matrix_dat
 typedef uint8_t LIGHTS[16];
 
 const LIGHTS light_mapping = {
-  0, 2, 15, 13,
-  1, 3, 14, 12,
-  11, 9, 7, 5,
-  10, 8, 5, 4
+  8, 10, 12, 14,
+  9, 11, 13, 15,
+  3, 1, 7, 5,
+  2, 0, 6, 4
 };
 
 const MATRIX_RESULT button_mapping = {
-  
+  8, 9, 10, 11,
+  4, 5, 6, 7,
+  0, 1, 2, 3
 };
 
 uint8_t scan_matrix(MATRIX_RESULT result) {
@@ -55,7 +57,7 @@ uint8_t scan_matrix(MATRIX_RESULT result) {
       Serial.print(": ");
       Serial.println(value);
       */
-      result[idx] = value;
+      result[button_mapping[idx]] = value;
     }
     
     // put the enable line hiz
