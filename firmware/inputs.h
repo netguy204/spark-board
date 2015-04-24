@@ -5,6 +5,7 @@
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
 #define EN0 2
 #define EN1 3
+#define EN2 4
 
 #define SB0 5
 #define SB1 6
@@ -15,10 +16,21 @@
 #define CLOCK 10
 #define LATCH 11
 
-const uint8_t matrix_enables[] PROGMEM = {EN0, EN1};
+const uint8_t matrix_enables[] PROGMEM = {EN0, EN1, EN2};
 const uint8_t matrix_data[] PROGMEM = {SB0, SB1, SB2, SB3};
 typedef uint8_t MATRIX_RESULT[ARRAY_SIZE(matrix_enables) * ARRAY_SIZE(matrix_data)];
 typedef uint8_t LIGHTS[16];
+
+const LIGHTS light_mapping = {
+  0, 2, 15, 13,
+  1, 3, 14, 12,
+  11, 9, 7, 5,
+  10, 8, 5, 4
+};
+
+const MATRIX_RESULT button_mapping = {
+  
+};
 
 uint8_t scan_matrix(MATRIX_RESULT result) {
   for(uint8_t enii = 0; enii < ARRAY_SIZE(matrix_enables); ++enii) {
@@ -52,21 +64,27 @@ uint8_t scan_matrix(MATRIX_RESULT result) {
 }
 
 void draw_screen(LIGHTS lights) {
+  LIGHTS rlights;
+  for(uint8_t ii = 0; ii < 16; ++ii) {
+    rlights[light_mapping[ii]] = lights[ii];
+  }
+  
+  digitalWrite(LATCH, LOW);
   for(uint8_t ii = 0; ii < 2; ++ii) {
     uint8_t output = 0;
     for(uint8_t jj = 0; jj < 8; ++jj) {
-      uint8_t value = (lights[ii * 8 + jj] > 0);
+      uint8_t value = (rlights[ii * 8 + jj] > 0);
       output = output << 1;
       output |= value;
-      Serial.print(value);
-      Serial.print(" ");
+      //Serial.print(value);
+      //Serial.print(" ");
     }
     
-    Serial.println(output);
-    digitalWrite(LATCH, LOW);
+    //Serial.println(output);
+
     shiftOut(DATA, CLOCK, MSBFIRST, output);
-    digitalWrite(LATCH, HIGH);
   }
+  digitalWrite(LATCH, HIGH);
 }
 
 
