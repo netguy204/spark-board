@@ -11,9 +11,14 @@
 #define SB2 7
 #define SB3 8
 
+#define DATA 9
+#define CLOCK 10
+#define LATCH 11
+
 const uint8_t matrix_enables[] PROGMEM = {EN0, EN1};
 const uint8_t matrix_data[] PROGMEM = {SB0, SB1, SB2, SB3};
 typedef uint8_t MATRIX_RESULT[ARRAY_SIZE(matrix_enables) * ARRAY_SIZE(matrix_data)];
+typedef uint8_t LIGHTS[16];
 
 uint8_t scan_matrix(MATRIX_RESULT result) {
   for(uint8_t enii = 0; enii < ARRAY_SIZE(matrix_enables); ++enii) {
@@ -43,6 +48,24 @@ uint8_t scan_matrix(MATRIX_RESULT result) {
     
     // put the enable line hiz
     pinMode(en, INPUT);
+  }
+}
+
+void draw_screen(LIGHTS lights) {
+  for(uint8_t ii = 0; ii < 2; ++ii) {
+    uint8_t output = 0;
+    for(uint8_t jj = 0; jj < 8; ++jj) {
+      uint8_t value = (lights[ii * 8 + jj] > 0);
+      output = output << 1;
+      output |= value;
+      Serial.print(value);
+      Serial.print(" ");
+    }
+    
+    Serial.println(output);
+    digitalWrite(LATCH, LOW);
+    shiftOut(DATA, CLOCK, MSBFIRST, output);
+    digitalWrite(LATCH, HIGH);
   }
 }
 
