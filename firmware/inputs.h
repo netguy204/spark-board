@@ -21,14 +21,14 @@ const uint8_t matrix_data[] PROGMEM = {SB0, SB1, SB2, SB3};
 typedef uint8_t MATRIX_RESULT[ARRAY_SIZE(matrix_enables) * ARRAY_SIZE(matrix_data)];
 typedef uint8_t LIGHTS[16];
 
-const LIGHTS light_mapping = {
+const LIGHTS light_mapping PROGMEM = {
   8, 10, 12, 14,
   9, 11, 13, 15,
   3, 1, 7, 5,
   2, 0, 6, 4
 };
 
-const MATRIX_RESULT button_mapping = {
+const MATRIX_RESULT button_mapping PROGMEM = {
   8, 9, 10, 11,
   4, 5, 6, 7,
   0, 1, 2, 3
@@ -57,7 +57,8 @@ uint8_t scan_matrix(MATRIX_RESULT result) {
       Serial.print(": ");
       Serial.println(value);
       */
-      result[button_mapping[idx]] = value;
+      uint8_t nidx = pgm_read_byte_near(button_mapping + idx);
+      result[nidx] = value;
     }
     
     // put the enable line hiz
@@ -68,7 +69,8 @@ uint8_t scan_matrix(MATRIX_RESULT result) {
 void draw_screen(LIGHTS lights) {
   LIGHTS rlights;
   for(uint8_t ii = 0; ii < 16; ++ii) {
-    rlights[light_mapping[ii]] = lights[ii];
+    uint8_t nii = pgm_read_byte_near(light_mapping + ii);
+    rlights[nii] = lights[ii];
   }
   
   digitalWrite(LATCH, LOW);
