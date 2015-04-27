@@ -46,6 +46,7 @@ void loop() {
     lights[ii] = 0;
   }
   
+  
   for(uint8_t ii = 0; ii < ARRAY_SIZE(result); ++ii) {
     for(uint8_t jj = 0; jj < ARRAY_SIZE(enables[ii]); ++jj) {
       if(result[ii] > 0) {
@@ -59,7 +60,19 @@ void loop() {
       lights[disables[ii]] = 0;
     }
   }
-  //Serial.println();
+  
+  
+  /*
+  for(uint8_t ii = 0; ii < ARRAY_SIZE(result); ++ii) {
+    if(result[ii] > 0) {
+      lights[ii] = 1;
+    }
+    Serial.print(result[ii]);
+    Serial.print(" ");
+  }
+  Serial.println();
+  */
+  
   draw_screen(lights);
   //delay(1000);
 }

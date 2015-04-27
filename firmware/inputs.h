@@ -24,8 +24,8 @@ typedef uint8_t LIGHTS[16];
 const LIGHTS light_mapping PROGMEM = {
   8, 10, 12, 14,
   9, 11, 13, 15,
-  3, 1, 7, 5,
-  2, 0, 6, 4
+  0, 2, 7, 5,
+  1, 3, 6, 4
 };
 
 const MATRIX_RESULT button_mapping PROGMEM = {
@@ -57,8 +57,8 @@ uint8_t scan_matrix(MATRIX_RESULT result) {
       Serial.print(": ");
       Serial.println(value);
       */
-      uint8_t nidx = pgm_read_byte_near(button_mapping + idx);
-      result[nidx] = value;
+      //uint8_t nidx = pgm_read_byte_near(button_mapping + idx);
+      result[idx] = value;
     }
     
     // put the enable line hiz
