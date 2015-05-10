@@ -3,9 +3,9 @@
 #include <avr/pgmspace.h>
 
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
-#define EN0 2
-#define EN1 3
-#define EN2 4
+#define EN0 1
+#define EN1 2
+#define EN2 3
 
 #define SB0 5
 #define SB1 6
@@ -34,19 +34,19 @@ const MATRIX_RESULT button_mapping PROGMEM = {
   0, 1, 2, 3
 };
 
-uint8_t scan_matrix(MATRIX_RESULT result) {
+void scan_matrix(MATRIX_RESULT result) {
   for(uint8_t enii = 0; enii < ARRAY_SIZE(matrix_enables); ++enii) {
     // power up the enable line
     uint8_t en = pgm_read_byte_near(matrix_enables + enii);
     pinMode(en, OUTPUT);
     digitalWrite(en, LOW);
-    
+
     // scan the data lines
     for(uint8_t dii = 0; dii < ARRAY_SIZE(matrix_data); ++dii) {
       uint8_t d = pgm_read_byte_near(matrix_data + dii);
       pinMode(d, INPUT);
       digitalWrite(d, HIGH); // enable pull up resistor
-      
+
       // test for logic low
       uint8_t idx = enii * ARRAY_SIZE(matrix_data) + dii;
       uint8_t value = (digitalRead(d) == 0);
@@ -60,7 +60,7 @@ uint8_t scan_matrix(MATRIX_RESULT result) {
       //uint8_t nidx = pgm_read_byte_near(button_mapping + idx);
       result[idx] = value;
     }
-    
+
     // put the enable line hiz
     pinMode(en, INPUT);
   }
@@ -72,7 +72,7 @@ void draw_screen(LIGHTS lights) {
     uint8_t nii = pgm_read_byte_near(light_mapping + ii);
     rlights[nii] = lights[ii];
   }
-  
+
   digitalWrite(LATCH, LOW);
   for(uint8_t ii = 0; ii < 2; ++ii) {
     uint8_t output = 0;
@@ -83,12 +83,10 @@ void draw_screen(LIGHTS lights) {
       //Serial.print(value);
       //Serial.print(" ");
     }
-    
+
     //Serial.println(output);
 
     shiftOut(DATA, CLOCK, MSBFIRST, output);
   }
   digitalWrite(LATCH, HIGH);
 }
-
-

@@ -14,7 +14,7 @@ uint8_t enables[][3] = {
    {3, 11, 9},
    {13, 5, 10}
 };
- 
+
 uint8_t disables[] = {
  9,
  7,
@@ -29,9 +29,9 @@ uint8_t disables[] = {
  10,
  11
 };
- 
+
 void setup() {
-  Serial.begin(9600);
+  //Serial.begin(9600);
   pinMode(DATA, OUTPUT);
   pinMode(CLOCK, OUTPUT);
   pinMode(LATCH, OUTPUT);
@@ -40,13 +40,13 @@ void setup() {
 void loop() {
   MATRIX_RESULT result;
   LIGHTS lights;
-  
+
   scan_matrix(result);
   for(uint8_t ii = 0; ii < ARRAY_SIZE(lights); ++ii) {
     lights[ii] = 0;
   }
-  
-  
+
+
   for(uint8_t ii = 0; ii < ARRAY_SIZE(result); ++ii) {
     for(uint8_t jj = 0; jj < ARRAY_SIZE(enables[ii]); ++jj) {
       if(result[ii] > 0) {
@@ -54,14 +54,14 @@ void loop() {
       }
     }
   }
-  
+
   for(uint8_t ii = 0; ii < ARRAY_SIZE(result); ++ii) {
     if(result[ii] > 0) {
       lights[disables[ii]] = 0;
     }
   }
-  
-  
+
+
   /*
   for(uint8_t ii = 0; ii < ARRAY_SIZE(result); ++ii) {
     if(result[ii] > 0) {
@@ -72,7 +72,7 @@ void loop() {
   }
   Serial.println();
   */
-  
+
   draw_screen(lights);
   //delay(1000);
 }
